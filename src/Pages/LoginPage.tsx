@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import useUserStore from '../Stores/useUserStore'; // Zustand store
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import useUserStore from "../Stores/useUserStore"; // Zustand store
 
 interface LoginResponse {
   email: string;
@@ -9,9 +9,9 @@ interface LoginResponse {
 }
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const { setUser } = useUserStore();
 
@@ -19,36 +19,44 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post<LoginResponse>('http://localhost:8000/auth/login', {
-        email,
-        password,
-      });
+      const response = await axios.post<LoginResponse>(
+        "http://localhost:8000/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
       const { token } = response.data;
 
       // Save token to local storage
-      localStorage.setItem('token', token);
+      localStorage.setItem("token", token);
 
       // Fetch user details
-      const userResponse = await axios.get('http://localhost:8000/auth/me', {
+      const userResponse = await axios.get("http://localhost:8000/auth/me", {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       const { _id, admintype } = userResponse.data;
 
-      // Store user information in the global store
-      setUser(_id, token);
+      // Store user ID and token in Zustand
+      if (_id && token) {
+        setUser(_id, token);
+      } else {
+        setError("Failed to retrieve user details.");
+        return;
+      }
 
       // Navigate based on admin type
       if (admintype) {
-        navigate('/admin'); // Navigate to admin page
+        navigate("/admin"); // Navigate to admin page
       } else {
-        navigate('/user'); // Navigate to user page
+        navigate("/user"); // Navigate to user page
       }
     } catch (err: any) {
-      setError('Login failed. Please check your credentials.');
+      setError("Login failed. Please check your credentials.");
     }
   };
 
@@ -58,7 +66,10 @@ const LoginPage: React.FC = () => {
         <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="email"
+            >
               Email
             </label>
             <input
@@ -71,7 +82,10 @@ const LoginPage: React.FC = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="password"
+            >
               Password
             </label>
             <input
