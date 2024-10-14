@@ -8,7 +8,9 @@ const ScheduleForm: React.FC = () => {
     mobile: '',
     email: '',
     cdate: '',
+
     area:'',
+
     timeslot: '',
     type: '',
     description: '',
@@ -75,7 +77,9 @@ const ScheduleForm: React.FC = () => {
         mobile: '',
         email: '',
         cdate: '',
+
         area:'',
+
         timeslot: '',
         type: '',
         description: '',
@@ -173,6 +177,7 @@ const ScheduleForm: React.FC = () => {
         />
       </div>
 
+
       <div className="mb-4">
         <label className="block text-gray-700">Area</label>
         <select
@@ -188,6 +193,7 @@ const ScheduleForm: React.FC = () => {
           <option value="Evening">Galle</option>
         </select>
       </div>
+
   
       <div className="mb-4">
         <label className="block text-gray-700">Timeslot</label>

@@ -9,7 +9,9 @@ interface Schedule {
   mobile: string;
   email: string;
   cdate: string;
+
   area:string;
+
   timeslot: string;
   description: string;
   type: string;
@@ -27,7 +29,9 @@ const UpdateForm: React.FC = () => {
     mobile: "",
     email: "",
     cdate: "",
+
     area:"",
+
     timeslot: "",
     description: "",
     type: "",
@@ -144,6 +148,7 @@ const UpdateForm: React.FC = () => {
               required
             />
           </div>
+
           <div className="mb-4">
             <label className="block text-gray-700">Area</label>
             <select
@@ -159,6 +164,7 @@ const UpdateForm: React.FC = () => {
           <option value="Evening">Galle</option>
             </select>
           </div>
+
 
 
           <div className="mb-4">
