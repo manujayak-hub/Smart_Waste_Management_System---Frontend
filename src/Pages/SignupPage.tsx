@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { UserService } from '../Services/UserService'; // Import UserService
 
 const SignupPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +13,6 @@ const SignupPage: React.FC = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -24,20 +23,12 @@ const SignupPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(''); // Clear previous errors
-    setSuccess(''); // Clear previous success messages
+    setError(''); 
+    setSuccess(''); 
   
     try {
-      const response = await axios.post('http://localhost:8000/auth/signup', formData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      // Show success message
+      const response = await UserService.signupUser(formData); 
       setSuccess('Signup successful! You can now log in.');
-  
-      // Clear form fields
       setFormData({
         fname: '',
         lname: '',
@@ -46,8 +37,7 @@ const SignupPage: React.FC = () => {
         mobile: '',
         admintype: false,
       });
-      
-      console.info("Signup successful:", response.data.message);
+      console.info("Signup successful:", response.message);
     } catch (error: any) {
       if (error.response) {
         setError(error.response.data.error || 'Server Error occurred');
@@ -61,7 +51,6 @@ const SignupPage: React.FC = () => {
       }
     }
   };
-  
   
   
 

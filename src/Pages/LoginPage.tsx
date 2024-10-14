@@ -1,61 +1,37 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import useUserStore from "../Stores/useUserStore"; // Zustand store
+import { UserService } from "../Services/UserService"; 
 
-interface LoginResponse {
-  email: string;
-  token: string;
-}
+
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { setUser } = useUserStore();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    
+  
     try {
-      const response = await axios.post<LoginResponse>(
-        "http://localhost:8000/auth/login",
-        {
-          email,
-          password,
-        }
-      );
-
-      const { token } = response.data;
-
-      // Save token to local storage
-      localStorage.setItem("token", token);
-
-      // Fetch user details
-      const userResponse = await axios.get("http://localhost:8000/auth/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const { _id, admintype } = userResponse.data;
-
-      // Store user ID and token in Zustand
-      if (_id && token) {
-        setUser(_id, token);
-      } else {
-        setError("Failed to retrieve user details.");
-        return;
-      }
-
-      // Navigate based on admin type
+      const response = await UserService.loginUser(email, password);
+     
+  
+      const { token } = response;
+      
+  
+      const userResponse = await UserService.fetchUser(token);
+      
+      const { admintype } = userResponse;
+  
       if (admintype) {
-        navigate("/admin"); // Navigate to admin page
+        navigate("/admin");
       } else {
-        navigate("/user"); // Navigate to user page
+        navigate("/user");
       }
     } catch (err: any) {
+      console.error("Login error:", err); 
       setError("Login failed. Please check your credentials.");
     }
   };
