@@ -21,7 +21,7 @@ const LoginPage: React.FC = () => {
       const { token } = response;
       
       localStorage.setItem('token', token);
-  
+
       const userResponse = await UserService.fetchUser(token);
       
       const { admintype } = userResponse;

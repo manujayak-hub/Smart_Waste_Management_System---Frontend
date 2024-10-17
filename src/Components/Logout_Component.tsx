@@ -1,4 +1,3 @@
-// src/components/Logout_Component.tsx
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -23,4 +22,6 @@ const Logout_Component: React.FC = () => {
   );
 };
 
+
 export default Logout_Component;
+
