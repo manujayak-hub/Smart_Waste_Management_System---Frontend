@@ -12,6 +12,7 @@ import AllWasteCollections from "./Pages/Waste_Collection_Admin/AllWasteCollecti
 import UpdateWasteCollection from "./Pages/Waste_Collection_Admin/UpdateWasteCollection";
 
 
+
 import FeedbackForm from "./Pages/Feedback/FeedbackForm";
 import MyFeedback from "./Pages/Feedback/MyFeedback";
 import EditFeedback from "./Pages/Feedback/EditFeedBack";
@@ -46,6 +47,7 @@ function App() {
           <Route path="/WasteCollection" element={<RecordCollection/>} />
           <Route path="/WasteCollection/all" element={<AllWasteCollections/>} />
           <Route path="/update-waste-collection/:id" element={<UpdateWasteCollection/>} />
+
 
 
           <Route path="/feedbackForm" element={<FeedbackForm/>} />

@@ -29,7 +29,7 @@ const LoginPage: React.FC = () => {
       if (admintype) {
         navigate("/admin");
       } else {
-        navigate("/user");
+        navigate("/userhome");
       }
     } catch (err: any) {
       console.error("Login error:", err); 
