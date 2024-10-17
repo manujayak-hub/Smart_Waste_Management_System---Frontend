@@ -6,6 +6,7 @@ const SignupPage: React.FC = () => {
     fname: '',
     lname: '',
     email: '',
+    residenceId:'',
     password: '',
     mobile: '',
     admintype: false,
@@ -33,9 +34,11 @@ const SignupPage: React.FC = () => {
         fname: '',
         lname: '',
         email: '',
+        residenceId:'',
         password: '',
         mobile: '',
         admintype: false,
+        
       });
       console.info("Signup successful:", response.message);
     } catch (error: any) {
@@ -96,6 +99,18 @@ const SignupPage: React.FC = () => {
             type="email"
             name="email"
             value={formData.email}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700">residenceId</label>
+          <input
+            type="text"
+            name="residenceId"
+            value={formData.residenceId}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             required
