@@ -19,7 +19,7 @@ function App() {
           <Route path="/schedule/update/:id" element={<UpdateForm />} />
 
           <Route path="/WasteCollection" element={<RecordCollection/>} />
-          <Route path="/WasteCollection/" element={<AllWasteCollections/>} />
+          <Route path="/WasteCollection/all" element={<AllWasteCollections/>} />
           <Route path="/update-waste-collection/:id" element={<UpdateWasteCollection/>} />
         </Routes>
       </BrowserRouter>

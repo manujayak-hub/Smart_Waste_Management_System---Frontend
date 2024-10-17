@@ -33,7 +33,7 @@ const UpdateWasteCollection: React.FC = () => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:8000/WasteCollection/${id}`, wasteCollection);
-      navigate('/WasteCollection'); // Navigate back to the main page after update
+      navigate('/WasteCollection/all'); // Navigate back to the main page after update
     } catch (err) {
       setError('Failed to update waste collection');
     }
