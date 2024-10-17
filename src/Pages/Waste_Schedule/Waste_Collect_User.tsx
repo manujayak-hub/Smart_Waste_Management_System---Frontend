@@ -15,12 +15,12 @@ const Waste_Collect_User: React.FC = () => {
   const [wasteCollections, setWasteCollections] = useState<WasteCollection[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const { residenceId2, email } = useFetchUser();
+  const { residenceId2 } = useFetchUser();
 
   useEffect(() => {
-    // Fetch all waste collection records only if residenceId2 is available
+    
     const fetchWasteCollections = async () => {
-      if (!residenceId2) return; // Ensure residenceId2 is available
+      if (!residenceId2) return; 
 
       try {
         const response = await axios.get(
@@ -42,7 +42,7 @@ const Waste_Collect_User: React.FC = () => {
   return (
     <div className="bg-gray-100 min-h-screen py-8 px-4">
       <h2 className="text-2xl font-bold text-center text-green-600 mb-6">
-        All Waste Collection Records {email}
+        All Waste Collection Records 
       </h2>
 
       {loading && <p className="text-center text-gray-600">Loading...</p>}
