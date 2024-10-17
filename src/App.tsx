@@ -5,6 +5,10 @@ import LoginPage from "./Pages/LoginPage";
 import ViewSchedule from "./Pages/Waste_Schedule/ViewSchedule";
 import UpdateForm from "./Pages/Waste_Schedule/UpdateForm";
 
+import RecordCollection from "./Pages/Waste_Collection_Admin/RecordCollection";
+import AllWasteCollections from "./Pages/Waste_Collection_Admin/AllWasteCollections";
+import UpdateWasteCollection from "./Pages/Waste_Collection_Admin/UpdateWasteCollection";
+
 
 import FeedbackForm from "./Pages/Feedback/FeedbackForm";
 import MyFeedback from "./Pages/Feedback/MyFeedback";
@@ -22,6 +26,7 @@ import UserDashboard from "./Pages/UserDashBoard";
 import UserHome from "./Pages/UserHome";
 import AddNewType from "./Pages/Type_Admin/AddNewType";
 
+
 function App() {
   return (
     <>
@@ -32,6 +37,11 @@ function App() {
           <Route path="/schedule" element={<ScheduleForm />} />
           <Route path="/schedule/view" element={<ViewSchedule />} />
           <Route path="/schedule/update/:id" element={<UpdateForm />} />
+
+
+          <Route path="/WasteCollection" element={<RecordCollection/>} />
+          <Route path="/WasteCollection/all" element={<AllWasteCollections/>} />
+          <Route path="/update-waste-collection/:id" element={<UpdateWasteCollection/>} />
 
 
           <Route path="/feedbackForm" element={<FeedbackForm/>} />
@@ -51,6 +61,7 @@ function App() {
 
           <Route path="/userhome" element={<UserHome />} />
           <Route path="/type" element={<AddNewType />} />
+
 
         </Routes>
       </BrowserRouter>
