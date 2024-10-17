@@ -5,6 +5,7 @@ import LoginPage from "./Pages/LoginPage";
 import ViewSchedule from "./Pages/Waste_Schedule/ViewSchedule";
 import UpdateForm from "./Pages/Waste_Schedule/UpdateForm";
 
+
 import FeedbackForm from "./Pages/Feedback/FeedbackForm";
 import MyFeedback from "./Pages/Feedback/MyFeedback";
 import EditFeedback from "./Pages/Feedback/EditFeedBack";
@@ -18,6 +19,9 @@ import WasteCollectedReport from "./Pages/WasteCollectedReport";
 
 import UserDashboard from "./Pages/UserDashBoard";
 
+import UserHome from "./Pages/UserHome";
+import AddNewType from "./Pages/Type_Admin/AddNewType";
+
 function App() {
   return (
     <>
@@ -28,6 +32,7 @@ function App() {
           <Route path="/schedule" element={<ScheduleForm />} />
           <Route path="/schedule/view" element={<ViewSchedule />} />
           <Route path="/schedule/update/:id" element={<UpdateForm />} />
+
 
           <Route path="/feedbackForm" element={<FeedbackForm/>} />
           <Route path="/myFeedback" element={<MyFeedback/>} />
@@ -42,6 +47,10 @@ function App() {
 
           <Route path="/user" element={<UserDashboard/>} />
 
+
+
+          <Route path="/userhome" element={<UserHome />} />
+          <Route path="/type" element={<AddNewType />} />
 
         </Routes>
       </BrowserRouter>

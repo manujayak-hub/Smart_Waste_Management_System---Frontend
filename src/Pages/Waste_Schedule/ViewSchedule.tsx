@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserService } from '../../Services/UserService';
-import { ScheduleService, Schedule } from '../../Services/ScheduleService'; // Import ScheduleService
+import { ScheduleService, Schedule } from '../../Services/ScheduleService'; 
+import Logout_Component from '../../Components/Logout_Component';
 
 const ViewSchedule: React.FC = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const ViewSchedule: React.FC = () => {
     } else {
       console.log("No token found, please log in.");
     }
-  }, []); // Empty dependency array ensures this runs on component mount
+  }, []); 
 
   // Fetch schedules using ScheduleService
   const fetchSchedules = async () => {
@@ -66,6 +67,7 @@ const ViewSchedule: React.FC = () => {
   return (
     <div className="flex flex-col justify-center items-center h-auto bg-gray-100 p-4">
       <h2 className="text-2xl font-bold text-center mb-6 text-green-600">Waste Collection Schedules</h2>
+      <Logout_Component/>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
         {schedules.map(schedule => (

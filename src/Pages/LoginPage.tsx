@@ -21,6 +21,7 @@ const LoginPage: React.FC = () => {
       const { token } = response;
       
       localStorage.setItem('token', token);
+
       const userResponse = await UserService.fetchUser(token);
       
       const { admintype } = userResponse;
@@ -76,7 +77,7 @@ const LoginPage: React.FC = () => {
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors"
+            className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600  transition-colors"
           >
             Login
           </button>
