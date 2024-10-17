@@ -51,4 +51,14 @@ export class ScheduleService {
     const response = await baseURL.get(`/schedule/doc/${scheduleId}`);
     return response.data;
   }
+
+   // Fetch available time slots for a date
+   static async getAvailableTimeSlots(date: string): Promise<string[]> {
+    try {
+      const response = await baseURL.get(`/api/timeslots?date=${date}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
