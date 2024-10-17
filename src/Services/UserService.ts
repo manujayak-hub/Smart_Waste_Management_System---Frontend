@@ -8,6 +8,7 @@ export interface User {
   email: string;
   password: string;
   mobile: string;
+  residenceID: string;
   admintype: boolean;
 }
 
@@ -22,6 +23,7 @@ export interface SignupData {
   email: string;
   password: string;
   mobile: string;
+  residenceID: string;
   admintype: boolean;
 }
 

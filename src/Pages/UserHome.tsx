@@ -19,10 +19,10 @@ const UserHome: React.FC = () => {
           </button>
 
           <button
-            
+            onClick={()=>{navigate('/WasteCollection/view')}}
             className="bg-green-500 text-white font-bold py-4 px-6 rounded-lg w-64 h-24 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
-            Button
+            Waste Collections
           </button>
         
           <button
