@@ -6,6 +6,7 @@ export interface User {
   fname: string;
   lname: string;
   email: string;
+  residenceId: string;
   password: string;
   mobile: string;
   residenceID: string;
@@ -21,6 +22,7 @@ export interface SignupData {
   fname: string;
   lname: string;
   email: string;
+  residenceId:string;
   password: string;
   mobile: string;
   residenceID: string;
