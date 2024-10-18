@@ -29,16 +29,19 @@ const Schedule_Satus_Admin: React.FC = () => {
   }, [userId]);
 
   const handleUpdateJobStatus = async () => {
-    if (!selectedSchedule) return;
-
-    try {
-      await ScheduleService.updateSchedule(selectedSchedule._id, { jobstatus: true });
-      setSchedules(schedules.map(s => s._id === selectedSchedule._id ? { ...s, jobstatus: true } : s));
-      closeModal();
-    } catch (error) {
-      console.error('Error updating job status:', error);
+    if (selectedSchedule && selectedSchedule._id) {
+      try {
+        await ScheduleService.updateSchedule(selectedSchedule._id, { jobstatus: true });
+        setSchedules(schedules.map(s => s._id === selectedSchedule._id ? { ...s, jobstatus: true } : s));
+        closeModal();
+      } catch (error) {
+        console.error('Error updating job status:', error);
+      }
+    } else {
+      console.error("Schedule ID is undefined or null.");
     }
   };
+  
 
   const openModal = (schedule: Schedule) => {
     setSelectedSchedule(schedule);
@@ -71,6 +74,7 @@ const Schedule_Satus_Admin: React.FC = () => {
               <p><strong>Name:</strong> {schedule.fname} {schedule.lname}</p>
               <p><strong>Email:</strong> {schedule.email}</p>
               <p><strong>Area:</strong> {schedule.area}</p>
+              <p><strong>Resident ID:</strong> {schedule.residenceID}</p>
               <p><strong>Time Slot:</strong> {schedule.timeslot}</p>
               <p><strong>Description:</strong> {schedule.description}</p>
               <p><strong>Job Status:</strong> {schedule.jobstatus ? 'Completed' : 'Pending'}</p>

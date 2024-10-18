@@ -47,23 +47,31 @@ const ViewSchedule: React.FC = () => {
   }, [uid]); // Fetch schedules when uid changes
 
   
-  const handleUpdate = (_id: string) => {
-    console.log(_id)
-    navigate(`/schedule/update/${_id}`); 
+  const handleUpdate = (_id: string | undefined) => {
+    if (_id) {
+      console.log(_id);
+      navigate(`/schedule/update/${_id}`);
+    } else {
+      console.error("Schedule ID is undefined.");
+    }
   };
-
-  const handleDelete = async (_id: string) => {
-    console.log(_id)
-    if (window.confirm('Are you sure you want to delete this schedule?')) {
-      try {
-        await ScheduleService.deleteSchedule(_id); // Use ScheduleService to delete the schedule
-        setSchedules(schedules.filter(schedule => schedule._id !== _id)); 
-      } catch (error) {
-        console.error('Error deleting schedule:', error);
+  
+  const handleDelete = async (_id: string | undefined) => {
+    if (_id) {
+      if (window.confirm('Are you sure you want to delete this schedule?')) {
+        try {
+          await ScheduleService.deleteSchedule(_id);
+          setSchedules(schedules.filter(schedule => schedule._id !== _id));
+        } catch (error) {
+          console.error('Error deleting schedule:', error);
+        }
       }
+    } else {
+      console.error("Schedule ID is undefined.");
     }
   };
 
+  
   return (
     <div className="flex flex-col justify-center items-center h-auto bg-gray-100 p-4">
       <h2 className="text-2xl font-bold text-center mb-6 text-green-600">Waste Collection Schedules</h2>

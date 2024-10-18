@@ -59,10 +59,10 @@ const Waste_Collect_User: React.FC = () => {
                 <strong>Waste Type:</strong> {collection.wasteType}
               </p>
               <p>
-                <strong>Amount Collected:</strong> {collection.quantity} kg
+                <strong>Amount Collected:</strong> {collection.amountCollected} kg
               </p>
               <p>
-                <strong>Collector Name:</strong> {collection.collectedBy}
+                <strong>Collector Name:</strong> {collection.collectorName}
               </p>
             </div>
 

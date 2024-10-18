@@ -85,6 +85,7 @@ function App() {
 
           <Route path="/adminhome" element={<AdminHome />} />
 
+
           <Route path="/type" element={<AddNewType />} />
 
 

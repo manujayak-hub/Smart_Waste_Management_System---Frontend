@@ -5,8 +5,8 @@ export interface WasteRecord {
   residenceId: string; // ID of the residence or building
   collectionDate: string; // Date of waste collection
   wasteType: string; // Type of waste (e.g., recyclable, organic, etc.)
-  quantity: number; // Quantity of waste collected
-  collectedBy: string; // Name or ID of the person who collected the waste
+  amountCollected: number; // Quantity of waste collected
+  collectorName: string; // Name or ID of the person who collected the waste
 }
 
 export class WasteCollectionService {
