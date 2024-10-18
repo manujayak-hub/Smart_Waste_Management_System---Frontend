@@ -82,6 +82,8 @@ const UpdateForm: React.FC = () => {
     }
   };
 
+  const today = new Date().toISOString().split('T')[0];
+
   return (
     <div className="flex justify-center items-center h-auto bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full sm:w-3/4 md:w-1/2 lg:max-w-md">
@@ -145,6 +147,7 @@ const UpdateForm: React.FC = () => {
               value={schedule.cdate}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              min={today}
               required
             />
           </div>
