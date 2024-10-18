@@ -14,7 +14,7 @@ const AdminHome: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center">User Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">Admin Dashboard</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Button 1 */}
         <button

@@ -1,32 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useFetchUser } from '../../Hooks/GetUserID';
-
-interface WasteCollection {
-  _id: string;
-  residenceId: string;
-  collectionDate: string;
-  wasteType: string;
-  amountCollected: number;
-  collectorName: string;
-}
+import { WasteCollectionService, WasteRecord } from '../../Services/WasteCollectionService';
 
 const Waste_Collect_User: React.FC = () => {
-  const [wasteCollections, setWasteCollections] = useState<WasteCollection[]>([]);
+  const [wasteCollections, setWasteCollections] = useState<WasteRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const { residenceId2 } = useFetchUser();
+  const { residenceId } = useFetchUser(); 
 
   useEffect(() => {
-    
     const fetchWasteCollections = async () => {
-      if (!residenceId2) return; 
+      if (!residenceId) return;
 
       try {
-        const response = await axios.get(
-          `http://localhost:8000/WasteCollection/residence/${residenceId2}`
-        );
-        setWasteCollections(response.data);
+        const data = await WasteCollectionService.fetchWasteRecordsByResidenceId(residenceId);
+        setWasteCollections(data); // directly set the data from the service
       } catch (err) {
         setError('Failed to fetch waste collections');
       } finally {
@@ -35,7 +23,7 @@ const Waste_Collect_User: React.FC = () => {
     };
 
     fetchWasteCollections();
-  }, [residenceId2]); // Add residenceId2 as a dependency
+  }, [residenceId]); // Fetch data when residenceId changes
 
   
 
@@ -71,10 +59,10 @@ const Waste_Collect_User: React.FC = () => {
                 <strong>Waste Type:</strong> {collection.wasteType}
               </p>
               <p>
-                <strong>Amount Collected:</strong> {collection.amountCollected} kg
+                <strong>Amount Collected:</strong> {collection.quantity} kg
               </p>
               <p>
-                <strong>Collector Name:</strong> {collection.collectorName}
+                <strong>Collector Name:</strong> {collection.collectedBy}
               </p>
             </div>
 
