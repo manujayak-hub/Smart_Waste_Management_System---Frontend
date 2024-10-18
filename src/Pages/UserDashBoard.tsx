@@ -5,10 +5,10 @@ const UserDashboard: React.FC = () => {
   const navigate = useNavigate();
 
   // Handlers for each button to navigate to different pages
-  const goToPage1 = () => navigate('/feedbackForm');
-  const goToPage2 = () => navigate('/page2');
-  const goToPage3 = () => navigate('/page3');
-  const goToPage4 = () => navigate('/page4');
+  const goToPage1 = () => navigate('/AllFeedback');
+  const goToPage2 = () => navigate('/schedule');
+  const goToPage3 = () => navigate('/schedule/view');
+  const goToPage4 = () => navigate('/wcuser');
   const goToPage5 = () => navigate('/page5');
   const goToPage6 = () => navigate('/page6');
 

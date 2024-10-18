@@ -26,7 +26,10 @@ import WasteCollectedReport from "./Pages/WasteCollectedReport";
 
 import UserDashboard from "./Pages/UserDashBoard";
 
-import AdminHome from "./Pages/AdminHome";
+
+import AdminHome from "./Pages/AdminSide/AdminHome";
+
+
 import AddNewType from "./Pages/Type_Admin/AddNewType";
 
 
@@ -62,7 +65,11 @@ function App() {
           <Route path="/wasteCollectedReport" element={<WasteCollectedReport/>} />
 
           <Route path="/user" element={<UserDashboard/>} />
-          <Route path="/admin" element={<AdminHome/>} />
+
+
+          <Route path="/adminhome" element={<AdminHome />} />
+         
+
           <Route path="/type" element={<AddNewType />} />
 
 
