@@ -8,6 +8,7 @@ import PaymentManagement from "./Pages/Payment/PaymentManagement";
 import Wallet from "./Pages/Payment/Wallet";
 import Success from "./Pages/Payment/Success";
 import Cancel from "./Pages/Payment/Cancel";
+import PaymentDetails from "./Pages/Payment/PaymentDetails";
 function App() {
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
           <Route path="/wallet" element= {<Wallet/>} />
           <Route path="/success" element= {<Success/>} />
           <Route path="/cancel" element= {<Cancel/>} />
+          <Route path="/payment-details/:userId" element={<PaymentDetails />} />
         </Routes>
       </BrowserRouter>
     </>

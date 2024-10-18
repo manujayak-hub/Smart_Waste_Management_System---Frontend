@@ -3,6 +3,7 @@ import { PaymentService } from '../../Services/PaymentSevice';
 import { UserService } from '../../Services/UserService';
 import { FaMoneyBillAlt, FaHistory } from 'react-icons/fa'; // Icons
 import { UserPaymentServcie } from '../../Services/UserPayment';
+import { useNavigate } from 'react-router-dom';
 
 interface Payment {
   _id: string;
@@ -30,6 +31,7 @@ const Wallet: React.FC = () => {
   const [transactions, setTransactions] = useState<Userpayment[]>([]);
   const [fname, setFname] = useState<string>(''); 
   const [lname, setLname] = useState<string>('');
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     // Retrieve the token from local storage
@@ -122,6 +124,12 @@ const Wallet: React.FC = () => {
         console.log(error);
     }
 };
+
+const goToPaymentDetails = () => {
+  if (uid) {
+      navigate(`/payment-details/${uid}`); // Navigate to payment details page
+  }
+};
   return (
     <div className="p-4 bg-gray-100 min-h-screen">
       <div className="bg-white shadow-lg rounded-lg p-4 mb-6">
@@ -144,7 +152,7 @@ const Wallet: React.FC = () => {
           <button onClick={checkout} className="bg-green-500 text-white py-2 px-4 rounded-lg flex items-center">
             <FaMoneyBillAlt className="mr-2" /> Payment
           </button>
-          <button className="bg-gray-500 text-white py-2 px-4 rounded-lg flex items-center">
+          <button onClick={goToPaymentDetails} className="bg-gray-500 text-white py-2 px-4 rounded-lg flex items-center">
             <FaHistory className="mr-2" /> Payment Details
           </button>
         </div>
