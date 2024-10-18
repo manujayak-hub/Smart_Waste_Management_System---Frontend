@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ScheduleService } from "../../Services/ScheduleService";
 import { useFetchUser } from "../../Hooks/GetUserID";
 import { TypeService, Type } from "../../Services/TypeService";
+import WasteCollecteHeader from '../../Components/waste_collecte_header'
 
 const ScheduleForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -56,8 +57,7 @@ const ScheduleForm: React.FC = () => {
         ...formData,
         jobstatus: false,
         userid: userId || "",
-        _id: "",
-        residenceID: residenceId || "",
+        residenceID: residenceId || ""
       });
 
       setSuccess("Schedule created successfully!");
@@ -81,21 +81,14 @@ const ScheduleForm: React.FC = () => {
 
   return (
     <>
-      <div className="bg-green-600 py-4 flex items-center justify-between px-4">
-        <button className="text-white focus:outline-none">&#9776;</button>
-        <h2 className="text-white text-2xl font-bold text-center flex-grow">
-          Waste Collection Scheduling
-        </h2>
-        <div className="w-8"></div>
-      </div>
-
+<WasteCollecteHeader/>
       <div className="flex justify-center items-center h-auto bg-gray-100 overflow-auto">
         <h2 className="text-2xl font-bold text-center mb-6 text-green-600">
           Create Waste Collection Schedule
         </h2>
       </div>
 
-      <div className="flex justify-center items-center h-auto bg-gray-100 overflow-auto">
+      <div className="flex justify-center items-center h-auto w-auto  bg-gray-100 overflow-auto">
         <form
           className="bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full sm:w-3/4 md:w-1/2 lg:max-w-md"
           onSubmit={handleSubmit}

@@ -1,7 +1,7 @@
 import baseURL from '../Hooks/BaseUrl';
 
 export interface Schedule {
-  _id: string;
+  _id ?: string;
   fname: string;
   lname: string;
   mobile: string;
