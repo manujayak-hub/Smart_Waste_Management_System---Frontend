@@ -27,7 +27,6 @@ const RecordCollection: React.FC = () => {
 
     try {
       await axios.post('http://localhost:8000/WasteCollection/create', formData);
-
       setSuccess('Collection recorded successfully!');
       setFormData({
         residenceId: '',
@@ -44,7 +43,7 @@ const RecordCollection: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen"> {/* Flex container with full height */}
       {/* Header */}
       <div className="bg-green-600 py-4 flex items-center justify-between px-4">
         <button className="text-white focus:outline-none">&#9776;</button>
@@ -55,7 +54,7 @@ const RecordCollection: React.FC = () => {
       </div>
 
       {/* Form Section */}
-      <div className="flex justify-center items-center h-auto bg-gray-100 py-8 px-4">
+      <div className="flex justify-center items-center h-auto bg-gray-100 py-8 px-4 flex-grow"> {/* flex-grow to take available space */}
         <form
           className="bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-lg"
           onSubmit={handleSubmit}
@@ -100,9 +99,9 @@ const RecordCollection: React.FC = () => {
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             >
-               <option value="" disabled>
+              <option value="" disabled>
                 Select waste type
-               </option> 
+              </option>
               <option value="Organic">Organic</option>
               <option value="Recyclable">Recyclable</option>
               <option value="Hazardous">Hazardous</option>
@@ -147,7 +146,12 @@ const RecordCollection: React.FC = () => {
           </button>
         </form>
       </div>
-    </>
+
+      {/* Footer Section */}
+      <footer className="bg-gray-200 p-4 mt-4">
+        <p className="text-center text-gray-700 text-sm md:text-base">© 2024 Smart Waste. All rights reserved.</p>
+      </footer>
+    </div>
   );
 };
 

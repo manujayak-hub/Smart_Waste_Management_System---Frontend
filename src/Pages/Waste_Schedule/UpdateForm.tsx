@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ScheduleService } from '../../Services/ScheduleService'; // Import your ScheduleService
 
 interface Schedule {
-  _id: string;
+  _id?: string;
   fname: string;
   lname: string;
   mobile: string;
@@ -83,7 +83,7 @@ const UpdateForm: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="flex justify-center items-center h-auto bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full sm:w-3/4 md:w-1/2 lg:max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6 text-green-600">
           Update Schedule
