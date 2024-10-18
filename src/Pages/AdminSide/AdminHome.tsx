@@ -37,9 +37,10 @@ const UserHome: React.FC = () => {
           </button>
 
           <button
+            onClick={() => { navigate('/payment') }}
             className="bg-green-500 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
-            Button 3
+            Manage Payment
           </button>
 
           <button

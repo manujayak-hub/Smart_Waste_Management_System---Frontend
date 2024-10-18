@@ -35,7 +35,7 @@ import UserDashboard from "./Pages/UserDashBoard";
 
 
 import AdminHome from "./Pages/AdminSide/AdminHome";
-import UserHome from "./Pages/UserHome";
+
 
 import AddNewType from "./Pages/Type_Admin/AddNewType";
 
@@ -84,7 +84,6 @@ function App() {
 
 
           <Route path="/adminhome" element={<AdminHome />} />
-          <Route path="/userhome" element={<UserHome />} />
 
           <Route path="/type" element={<AddNewType />} />
 
