@@ -168,9 +168,13 @@ const ScheduleForm: React.FC = () => {
               required
             >
               <option value="">Select Area</option>
-              <option value="colombo">Colombo</option>
-              <option value="kandy">Kandy</option>
-              <option value="galle">Galle</option>
+              
+          <option value="Colombo">Colombo</option>
+          <option value="Kandy">Kandy</option>
+          <option value="Gampaha">Gampaha</option>
+          <option value="Galle">Galle</option>
+          <option value="Malabe">Malabe</option>
+
             </select>
           </div>
 
