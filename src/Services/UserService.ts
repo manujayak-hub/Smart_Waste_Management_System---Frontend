@@ -81,4 +81,9 @@ export class UserService {
       throw error;
     }
   }
+  static async fetchAllUsers(): Promise<User[]> {
+    const response = await baseURL.get(`/auth/getAll`); // Adjust the endpoint if necessary
+    return response.data;
+  
+}
 }
