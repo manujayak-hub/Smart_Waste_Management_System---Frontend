@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { PaymentService, Payment } from '../../Services/PaymentSevice';
 import { UserService } from '../../Services/UserService';
 import { UserPaymentServcie, Userpayment } from '../../Services/UserPayment';
-import Modal from '../../Components/Model'; // Adjust import path as necessary
-import { toast, ToastContainer } from 'react-toastify'; // Import toast and ToastContainer
-import 'react-toastify/dist/ReactToastify.css'; // Import styles
+import Modal from '../../Components/Model';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
+import Navbar from '../../Components/AdminNav/Navbar';
+import { WasteCollectionService, WasteRecord } from '../../Services/WasteCollectionService'; 
 
 const PaymentManagement: React.FC = () => {
   const [payments, setPayments] = useState<Payment[]>([]);
@@ -16,13 +18,15 @@ const PaymentManagement: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState<boolean>(false); // For payment details modal
-  const [paymentDetails, setPaymentDetails] = useState<Userpayment[]>([]); // For payment details
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState<boolean>(false);
+  const [paymentDetails, setPaymentDetails] = useState<Userpayment[]>([]); 
+  const [wasteRecords, setWasteRecords] = useState<WasteRecord[]>([]);
 
 
   useEffect(() => {
     loadPayments();
     loadUsers();
+    loadWasteRecords(); 
   }, []);
 
   const loadPayments = async () => {
@@ -56,6 +60,18 @@ const PaymentManagement: React.FC = () => {
     toast.success(message); // Show success toast
   };
 
+  const loadWasteRecords = async () => {
+    try {
+      setLoading(true);
+      const data = await WasteCollectionService.fetchAllWasteRecords();
+      setWasteRecords(data); // Store waste collection data in state
+    } catch (err) {
+      showError('Failed to load waste collection data');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleViewDetails = async (userId: string) => {
     try {
       const userPayments = await UserPaymentServcie.fetchAllUserPayment();
@@ -84,7 +100,7 @@ const PaymentManagement: React.FC = () => {
   
     const newPayment: Payment = {
       _id: editingPayment ? editingPayment._id : '',
-      userId: selectedUser?._id || editingPayment?.userId || '', // Use userId from selectedUser or fallback to editingPayment's userId
+      userId: selectedUser?._id || editingPayment?.userId || '', 
       fname: selectedUser?.fname || editingPayment?.fname || '',
       lname: selectedUser?.lname || editingPayment?.lname || '',
       flatFee,
@@ -106,7 +122,7 @@ const PaymentManagement: React.FC = () => {
   
       resetForm();
       loadPayments();
-      setIsModalOpen(false); // Close the modal after adding/updating
+      setIsModalOpen(false); 
     } catch (err) {
       showError('Failed to add/update payment');
     }
@@ -117,7 +133,7 @@ const PaymentManagement: React.FC = () => {
     setFlatFee(0);
     setPaybackFee(0);
     setEditingPayment(null);
-    setError(null); // Clear errors on reset
+    setError(null); 
   };
 
   const handleDeletePayment = async (id: string) => {
@@ -133,19 +149,29 @@ const PaymentManagement: React.FC = () => {
   const handleEditPayment = (payment: Payment) => {
     const user = users.find(u => u.fname === payment.fname && u.lname === payment.lname);
     if (user) {
-      setSelectedUser(user); // Ensure the full user object (including _id) is set
+      setSelectedUser(user); 
     }
     setEditingPayment(payment);
     setFlatFee(payment.flatFee);
     setPaybackFee(payment.paybackFee);
     setIsModalOpen(true); 
   };
+
+  const getWasteTypeForUser = (userId: string) => {
+    const user = users.find(u => u._id === userId);
+    if (!user) return 'No data'; 
+
+    const userWasteRecord = wasteRecords.find(record => record.residenceId === user.residenceId);
+    return userWasteRecord ? userWasteRecord.wasteType : 'Not collected'; 
+  };
   
 
 
   return (
+    <div className="flex flex-col min-h-screen bg-gray-100">
+      <Navbar/>
     <div className="p-5 md:p-10">
-      <h1 className="text-2xl font-bold mb-5 text-center">Payment Management</h1>
+      <h1 className="text-3xl font-bold mb-5 text-center">Payment Management</h1>
 
       {loading ? (
         <p className="text-center">Loading payments...</p>
@@ -157,7 +183,7 @@ const PaymentManagement: React.FC = () => {
             className="mb-4 bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition w-full md:w-auto"
             onClick={() => {
               resetForm();
-              setIsModalOpen(true); // Open the modal for adding a new payment
+              setIsModalOpen(true); 
             }}
           >
             New User
@@ -168,6 +194,7 @@ const PaymentManagement: React.FC = () => {
               <tr>
                 <th className="px-4 py-2">First Name</th>
                 <th className="px-4 py-2">Last Name</th>
+                <th className="px-4 py-2">Waste Type</th> 
                 <th className="px-4 py-2">Flat Fee</th>
                 <th className="px-4 py-2">Payback Fee</th>
                 <th className="px-4 py-2">Total Bill</th>
@@ -176,11 +203,11 @@ const PaymentManagement: React.FC = () => {
             </thead>
             <tbody>
               {payments.map((payment) => {
-              
                 return (
                   <tr key={payment._id}>
                     <td className="border px-4 py-2">{payment.fname}</td>
                     <td className="border px-4 py-2">{payment.lname}</td>
+                    <td className="border px-4 py-2">{getWasteTypeForUser(payment.userId)}</td>
                     <td className="border px-4 py-2">{payment.flatFee}</td>
                     <td className="border px-4 py-2">{payment.paybackFee}</td>
                     <td className="border px-4 py-2">
@@ -196,7 +223,7 @@ const PaymentManagement: React.FC = () => {
                       </button>
                       <button
                       className="p-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
-                      onClick={() => handleViewDetails(payment.userId)} // View details button
+                      onClick={() => handleViewDetails(payment.userId)} 
                     >
                       View Details
                     </button>
@@ -291,6 +318,7 @@ const PaymentManagement: React.FC = () => {
           <ToastContainer /> {/* Add toast notification container */}
         </>
       )}
+    </div>
     </div>
   );
 };

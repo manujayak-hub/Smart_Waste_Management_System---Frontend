@@ -1,16 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminHeroImage from '../../assets/AdminHero.jpg'; 
+import Navbar from '../../Components/AdminNav/Navbar';
 
 const UserHome: React.FC = () => {
   const navigate = useNavigate();
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
+      <Navbar/>
       {/* Header Section */}
-      <header className="bg-green-600 p-4 shadow-md">
+      {/* <header className="bg-green-600 p-4 shadow-md">
         <h1 className="text-2xl md:text-3xl font-bold text-white text-center">Admin Dashboard</h1>
-      </header>
+      </header> */}
 
       {/* Main Content */}
       <main className="flex-grow flex flex-col items-center justify-center p-4">
