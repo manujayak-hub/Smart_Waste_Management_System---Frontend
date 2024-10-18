@@ -27,7 +27,7 @@ const LoginPage: React.FC = () => {
       const { admintype } = userResponse;
   
       if (admintype) {
-        navigate("/admin");
+        navigate("/adminhome");
       } else {
         navigate("/userhome");
       }
