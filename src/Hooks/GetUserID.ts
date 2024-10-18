@@ -6,7 +6,7 @@ export const useFetchUser = () => {
   const [fname, setFname] = useState<string | null>(null);
   const [lname, setLname] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
-  const [residenceId2, setResidenceId] = useState<string | null>(null);
+  const [residenceId, setResidenceId] = useState<string | null>(null);
   const [mobile, setMobile] = useState<string | null>(null);
   const [admintype, setAdmintype] = useState<boolean | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -41,7 +41,7 @@ export const useFetchUser = () => {
     fname,
     lname,
     email,
-    residenceId2,
+    residenceId,
     mobile,
     admintype,
     error,

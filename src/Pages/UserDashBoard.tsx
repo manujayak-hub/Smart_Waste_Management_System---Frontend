@@ -6,9 +6,9 @@ const UserDashboard: React.FC = () => {
 
   // Handlers for each button to navigate to different pages
   const goToPage1 = () => navigate('/feedbackForm');
-  const goToPage2 = () => navigate('/page2');
-  const goToPage3 = () => navigate('/page3');
-  const goToPage4 = () => navigate('/page4');
+  const goToPage2 = () => navigate('/schedule');
+  const goToPage3 = () => navigate('/schedule/view');
+  const goToPage4 = () => navigate('/wcuser');
   const goToPage5 = () => navigate('/page5');
   const goToPage6 = () => navigate('/page6');
 
@@ -21,28 +21,28 @@ const UserDashboard: React.FC = () => {
           onClick={goToPage1}
           className="p-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
         >
-          Page 1
+          Feedback Form
         </button>
         {/* Button 2 */}
         <button
           onClick={goToPage2}
           className="p-4 bg-green-500 text-white rounded hover:bg-green-600 transition"
         >
-          Page 2
+          Schedule Bulky Collection
         </button>
         {/* Button 3 */}
         <button
           onClick={goToPage3}
           className="p-4 bg-purple-500 text-white rounded hover:bg-purple-600 transition"
         >
-          Page 3
+          View Schedules
         </button>
         {/* Button 4 */}
         <button
           onClick={goToPage4}
           className="p-4 bg-red-500 text-white rounded hover:bg-red-600 transition"
         >
-          Page 4
+          Monitor Waste Collection
         </button>
         {/* Button 5 */}
         <button
