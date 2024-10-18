@@ -4,6 +4,13 @@ import SignupPage from "./Pages/SignupPage";
 import LoginPage from "./Pages/LoginPage";
 import ViewSchedule from "./Pages/Waste_Schedule/ViewSchedule";
 import UpdateForm from "./Pages/Waste_Schedule/UpdateForm";
+
+import PaymentManagement from "./Pages/Payment/PaymentManagement";
+import Wallet from "./Pages/Payment/Wallet";
+import Success from "./Pages/Payment/Success";
+import Cancel from "./Pages/Payment/Cancel";
+import PaymentDetails from "./Pages/Payment/PaymentDetails";
+
 import Waste_Collect_User from "./Pages/Waste_Schedule/Waste_Collect_User";
 import Schedule_Satus_Admin from "./Pages/Waste_Schedule/Schedule_Satus_Admin"
 
@@ -33,16 +40,25 @@ import AdminHome from "./Pages/AdminSide/AdminHome";
 import AddNewType from "./Pages/Type_Admin/AddNewType";
 
 
+
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+        <Route path="/" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/schedule" element={<ScheduleForm />} />
           <Route path="/schedule/view" element={<ViewSchedule />} />
           <Route path="/schedule/update/:id" element={<UpdateForm />} />
+
+          <Route path="/payment" element={<PaymentManagement/>}/>
+          <Route path="/wallet" element= {<Wallet/>} />
+          <Route path="/success" element= {<Success/>} />
+          <Route path="/cancel" element= {<Cancel/>} />
+          <Route path="/payment-details/:userId" element={<PaymentDetails />} />
+
           <Route path="/wcuser" element={<Waste_Collect_User />} />
           <Route path="/schedule/status/admin" element={<Schedule_Satus_Admin/>}/>
 
@@ -72,6 +88,7 @@ function App() {
          
 
           <Route path="/type" element={<AddNewType />} />
+
 
 
         </Routes>
