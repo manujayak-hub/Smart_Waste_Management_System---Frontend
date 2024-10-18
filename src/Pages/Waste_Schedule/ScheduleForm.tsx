@@ -79,6 +79,7 @@ const ScheduleForm: React.FC = () => {
     }
   };
 
+  const today = new Date().toISOString().split('T')[0];
   return (
     <>
 <WasteCollecteHeader/>
@@ -154,6 +155,7 @@ const ScheduleForm: React.FC = () => {
               value={formData.cdate}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              min={today}
               required
             />
           </div>
@@ -213,7 +215,7 @@ const ScheduleForm: React.FC = () => {
               {/* Dynamically render waste types */}
               {wasteTypes.map((type) => (
                 <option key={type.wastetype} value={type.wastetype}>
-                  {type.typedescription}
+                  {type.wastetype}
                 </option>
               ))}
             
