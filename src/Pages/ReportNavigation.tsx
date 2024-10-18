@@ -13,22 +13,22 @@ const ReportNavigation: React.FC = () => {
       <h1 className="text-2xl font-bold">Report Generation</h1>
       <div className="space-x-4">
         <button
-          onClick={() => handleNavigate('/report1')}
+          onClick={() => handleNavigate('/wasteCollectedReport')}
           className="bg-blue-500 text-white px-4 py-2 rounded"
         >
-          Generate Report 1
+          Collected Waste
         </button>
         <button
-          onClick={() => handleNavigate('/report2')}
+          onClick={() => handleNavigate('/reports/schedules')}
           className="bg-blue-500 text-white px-4 py-2 rounded"
         >
-          Generate Report 2
+          Schedules
         </button>
         <button
           onClick={() => handleNavigate('/report3')}
           className="bg-blue-500 text-white px-4 py-2 rounded"
         >
-          Generate Report 3
+          Payment
         </button>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import FeedbackService, { Feedback } from '../../Services/FeedbackService';
 import { useNavigate } from 'react-router-dom';
+import Logout_Component from '../../Components/Logout_Component';
 
 const AllFeedback: React.FC = () => {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
@@ -48,6 +49,7 @@ const AllFeedback: React.FC = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-4 border rounded shadow">
+       <div ><Logout_Component/></div>
       <h2 className="text-2xl font-bold mb-4">Feedbacks</h2>
 
      

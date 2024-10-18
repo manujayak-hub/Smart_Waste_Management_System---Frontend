@@ -9,8 +9,8 @@ const AdminHome: React.FC = () => {
   const goToPage2 = () => navigate('/type');
   const goToPage3 = () => navigate('/page3');
   const goToPage4 = () => navigate('/page4');
-  const goToPage5 = () => navigate('/page5');
-  const goToPage6 = () => navigate('/page6');
+  const goToPage5 = () => navigate('/adminView');
+  const goToPage6 = () => navigate('/reportNavigation');
 
   return (
     <div className="max-w-4xl mx-auto p-6">
