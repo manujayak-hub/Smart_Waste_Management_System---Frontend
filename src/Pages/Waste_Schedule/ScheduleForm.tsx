@@ -1,5 +1,7 @@
-import React, { useState,useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { ScheduleService } from '../../Services/ScheduleService'; 
+import { UserService } from '../../Services/UserService'; 
+import { TypeService, Type } from '../../Services/TypeService';
 
 const ScheduleForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -19,43 +21,48 @@ const ScheduleForm: React.FC = () => {
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const [uid, setUid] = useState<string | null>(null);
+  const [wasteTypes, setWasteTypes] = useState<Type[]>([]); // State to store fetched waste types
 
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   useEffect(() => {
-    // Retrieve the token from local storage
-    const token = localStorage.getItem("token");
-
+    // Fetch the user details
+    const token = localStorage.getItem('token');
     if (token) {
       const fetchUserDetails = async () => {
         try {
-          const userResponse = await axios.get("http://localhost:8000/auth/me", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          console.log(userResponse.data); // Handle the user details
-          const { _id} = userResponse.data;
-          setUid(_id)
+          const userResponse = await UserService.fetchUser(token);
+          const { _id } = userResponse;
+          setUid(_id);
         } catch (err) {
           console.error('Error fetching user details:', err);
           setError('Failed to fetch user details. Please log in again.');
         }
       };
-
       fetchUserDetails();
     } else {
-      console.log("No token found, please log in.");
+      console.log('No token found, please log in.');
       setError('No token found. Please log in.');
     }
-  }, []); // Empty dependency array ensures this runs on component mount
 
-
-
+    // Fetch the waste types from backend
+    const fetchWasteTypes = async () => {
+      try {
+        const types = await TypeService.fetchAllTypes();
+        setWasteTypes(types);  // Set the fetched waste types
+      } catch (err) {
+        console.error('Error fetching waste types:', err);
+        setError('Failed to fetch waste types.');
+      }
+    };
+    
+    fetchWasteTypes();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,10 +71,11 @@ const ScheduleForm: React.FC = () => {
     setSuccess('');
 
     try {
-       await axios.post('http://localhost:8000/schedule/create', {
+      await ScheduleService.createSchedule({
         ...formData,
         jobstatus: false,
-        userid:uid,
+        userid: uid || '',
+        _id: ''
       });
 
       setSuccess('Schedule created successfully!');
@@ -91,21 +99,19 @@ const ScheduleForm: React.FC = () => {
     }
   };
 
-  
-
   return (
-<>
-<div className="bg-green-600 py-4 flex items-center justify-between px-4">
-    <button className="text-white focus:outline-none">
+    <>
+      <div className="bg-green-600 py-4 flex items-center justify-between px-4">
+        <button className="text-white focus:outline-none">
+          &#9776; 
+        </button>
+        <h2 className="text-white text-2xl font-bold text-center flex-grow">Waste Collection Scheduling</h2>
+        <div className="w-8"></div>
+      </div>
 
-      &#9776; 
-    </button>
-    <h2 className="text-white text-2xl font-bold text-center flex-grow">Waste Collection Scheduling</h2>
-    <div className="w-8"></div> 
-  </div>
-<div className="flex justify-center items-center h-auto bg-gray-100 overflow-auto">
-<h2 className="text-2xl font-bold text-center mb-6 text-green-600">Create Waste Collection Schedule</h2>
-</div>
+      <div className="flex justify-center items-center h-auto bg-gray-100 overflow-auto">
+        <h2 className="text-2xl font-bold text-center mb-6 text-green-600">Create Waste Collection Schedule</h2>
+      </div>
 
     <div className="flex justify-center items-center h-auto bg-gray-100 overflow-auto">
     <form
