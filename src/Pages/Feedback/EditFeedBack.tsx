@@ -1,6 +1,9 @@
+import FeedbackService, { Feedback } from '../../Services/FeedbackService';
+import Navheader from '../../Components/Navbar/Navbar';
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import FeedbackService, { Feedback } from '../../Services/FeedbackService';
+
+
 
 const EditFeedback: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -52,6 +55,8 @@ const EditFeedback: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
+    <div>
+      <Navheader/>
     <div className="max-w-3xl mx-auto p-4 border rounded shadow flex flex-col justify-center mt-5 mb-10">
       <h2 className="text-2xl font-bold mb-6 text-center">Edit Feedback</h2>
       {feedback && (
@@ -132,6 +137,7 @@ const EditFeedback: React.FC = () => {
           </div>
         </form>
       )}
+    </div>
     </div>
   );
 };

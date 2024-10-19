@@ -1,7 +1,10 @@
+import FeedbackService, { Feedback } from '../../Services/FeedbackService';
+import Navheader from '../../Components/Navbar/Navbar';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import FeedbackService, { Feedback } from '../../Services/FeedbackService';
 import { UserService } from '../../Services/UserService'; 
+
+
 
 const MyFeedback: React.FC = () => {
   const navigate = useNavigate();
@@ -77,10 +80,12 @@ const MyFeedback: React.FC = () => {
   );
 
   return (
-    <div className="max-w-4xl mx-auto p-4 border rounded shadow">
-      <h2 className="text-2xl font-bold mb-4 ">My Feedback</h2>
+    <div>
+      <Navheader/>
+      <div className=" mx-auto p-4 border rounded shadow ">
+      <h2 className="text-2xl font-bold mb-4 flex justify-center items-center text-center ">My Feedback</h2>
 
-     
+      <div className="max-w-3xl mx-auto p-4 ">
       <input
         type="text"
         placeholder="Search by feedback type..."
@@ -126,6 +131,8 @@ const MyFeedback: React.FC = () => {
       ) : (
         <p>No feedback submitted yet.</p>
       )}
+      </div>
+    </div>
     </div>
   );
 };

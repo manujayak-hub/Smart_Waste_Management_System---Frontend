@@ -80,14 +80,14 @@ const handleDownload = () => {
             <div className="flex space-x-4 mb-4">
                 <button
                     onClick={fetchSchedules}
-                    className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg shadow hover:bg-blue-600 transition duration-200"
+                   className="w-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white font-semibold py-2 rounded-lg shadow hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800"
                 >
                     Search
                 </button>
                 <button
                     onClick={handleDownload}
                     disabled={schedules.length === 0}
-                    className={`w-full ${schedules.length === 0 ? 'bg-gray-400' : 'bg-green-500'} text-white font-semibold py-2 rounded-lg shadow hover:${schedules.length === 0 ? 'bg-gray-400' : 'bg-green-600'} transition duration-200`}
+                    className={`w-full ${schedules.length === 0 ? 'bg-black' : 'bg-black'} text-white font-semibold py-2 rounded-lg shadow hover:${schedules.length === 0 ? 'bg-gray-400' : 'bg-green-600'} transition duration-200`}
                 >
                     Download PDF
                 </button>
