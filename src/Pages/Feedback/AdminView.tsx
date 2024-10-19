@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
 import FeedbackService, { Feedback } from '../../Services/FeedbackService';
+import React, { useEffect, useState } from 'react';
+import AdminNav from '../../Components/AdminHeader';
+
 
 const AdminView: React.FC = () => {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
@@ -64,6 +66,8 @@ const AdminView: React.FC = () => {
   });
 
   return (
+    <div>
+      <AdminNav/>
     <div className="max-w-3xl mx-auto p-4 border rounded shadow">
       <h2 className="text-2xl font-bold mb-4 text-center">All Feedbacks</h2>
       {sortedFeedbacks.length > 0 ? (
@@ -76,17 +80,17 @@ const AdminView: React.FC = () => {
             <p><strong>Message:</strong> {feedback.message}</p>
             <p><strong>Date:</strong> {new Date(feedback.date).toLocaleDateString()}</p>
             {feedback.response ? (
-              <div>
+              <div className="mt-6">
                 <p><strong>Admin Response:</strong> {feedback.response}</p>
                 <button
                   onClick={() => handleEditResponse(feedback)}
-                  className="bg-blue-500 text-white px-4 py-1 mt-2 rounded"
+                  className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mt-4"
                 >
                   Edit Response
                 </button>
                 <button
                   onClick={() => handleDeleteResponse(feedback._id)}
-                  className="bg-red-500 text-white px-4 py-1 mt-2 rounded ml-2"
+                  className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ml-6 mt-4"
                 >
                   Delete Response
                 </button>
@@ -112,6 +116,7 @@ const AdminView: React.FC = () => {
       ) : (
         <p>No feedback submitted yet.</p>
       )}
+    </div>
     </div>
   );
 };

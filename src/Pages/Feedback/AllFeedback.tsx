@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import FeedbackService, { Feedback } from '../../Services/FeedbackService';
+import Navheader from '../../Components/Navbar/Navbar';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Logout_Component from '../../Components/Logout_Component';
+
 
 const AllFeedback: React.FC = () => {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
@@ -48,11 +49,14 @@ const AllFeedback: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="max-w-3xl mx-auto p-4 border rounded shadow">
-       <div ><Logout_Component/></div>
-      <h2 className="text-2xl font-bold mb-4">Feedbacks</h2>
+    <div>
+      <Navheader/>
+      <div className=" mx-auto p-4 border rounded shadow ">
+      
+      <h2 className="text-2xl font-bold mb-4 flex justify-center items-center text-center">Feedbacks</h2>
 
-     
+      <div className="max-w-3xl mx-auto p-4 ">
+        
       <input
         type="text"
         placeholder="Search by feedback type..."
@@ -77,7 +81,6 @@ const AllFeedback: React.FC = () => {
         </button>
       </div>
 
-      
       {filteredFeedbacks.length > 0 ? (
         filteredFeedbacks.map((feedback) => (
           <div key={feedback._id} className="border p-4 mb-4 rounded">
@@ -93,6 +96,8 @@ const AllFeedback: React.FC = () => {
       ) : (
         <p>No feedbacks with response available.</p>
       )}
+      </div>
+    </div>
     </div>
   );
 };

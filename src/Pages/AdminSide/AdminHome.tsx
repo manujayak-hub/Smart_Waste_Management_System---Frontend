@@ -1,12 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminHeroImage from '../../assets/AdminHero.jpg'; 
+
 import Navbar from '../../Components/AdminNav/Navbar';
+import AdminNav from '../../Components/AdminHeader';
+
 
 const UserHome: React.FC = () => {
   const navigate = useNavigate();
 
   return (
+    <div>
+      <AdminNav/>
     <div className="flex flex-col min-h-screen bg-gray-100">
       <Navbar/>
       {/* Header Section */}
@@ -46,9 +51,10 @@ const UserHome: React.FC = () => {
           </button>
 
           <button
+          onClick={() => { navigate('/type') }}
             className="bg-green-500 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
-            Button 4
+            Change Type
           </button>
 
           <button
@@ -64,6 +70,12 @@ const UserHome: React.FC = () => {
           >
             Reports
           </button>
+          <button
+            onClick={() => { navigate('/signup') }}
+            className="bg-green-500 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+          >
+            Register User 
+          </button>
         </div>
       </main>
 
@@ -71,6 +83,7 @@ const UserHome: React.FC = () => {
       <footer className="bg-gray-200 p-4 mt-4">
         <p className="text-center text-gray-700 text-sm md:text-base">© 2024 Smart Waste. All rights reserved.</p>
       </footer>
+    </div>
     </div>
   );
 };

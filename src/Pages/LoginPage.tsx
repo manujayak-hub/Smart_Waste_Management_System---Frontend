@@ -82,6 +82,8 @@ const LoginPage: React.FC = () => {
             Login
           </button>
         </form>
+
+       
       </div>
     </div>
   );
