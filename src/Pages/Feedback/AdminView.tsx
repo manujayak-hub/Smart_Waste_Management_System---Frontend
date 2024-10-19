@@ -1,6 +1,6 @@
 import FeedbackService, { Feedback } from '../../Services/FeedbackService';
 import React, { useEffect, useState } from 'react';
-import AdminNav from '../../Components/AdminHeader';
+import Navbar from '../../Components/AdminNav/Navbar';
 
 
 const AdminView: React.FC = () => {
@@ -67,7 +67,7 @@ const AdminView: React.FC = () => {
 
   return (
     <div>
-      <AdminNav/>
+      <Navbar/>
     <div className="max-w-3xl mx-auto p-4 border rounded shadow">
       <h2 className="text-2xl font-bold mb-4 text-center">All Feedbacks</h2>
       {sortedFeedbacks.length > 0 ? (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import jsPDF from 'jspdf';
 import baseURL from '../Hooks/BaseUrl'; // Import your base URL
-import AdminNav from '../Components/AdminHeader';
+import Navbar from '../Components/AdminNav/Navbar';
 
 
 // List of months
@@ -73,7 +73,7 @@ const WasteCollectionReportPage: React.FC = () => {
 
   return (
     <div>
-      <AdminNav/>
+      <Navbar/>
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg mt-4">
       <h2 className="text-2xl font-bold mb-4 text-center">Waste Collected Report</h2>
 

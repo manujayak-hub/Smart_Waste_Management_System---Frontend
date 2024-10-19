@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import jsPDF from 'jspdf';
 import baseURL from '../Hooks/BaseUrl'; // Import your base URL
-import AdminNav from '../Components/AdminHeader';
+import Navbar from '../Components/AdminNav/Navbar';
 
 const ScheduleReport: React.FC = () => {
     const [area, setArea] = useState('');
@@ -78,7 +78,7 @@ const ScheduleReport: React.FC = () => {
 
     return (
         <div>
-             <AdminNav/>
+             <Navbar/>
         <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-4">
             <h2 className="text-2xl font-bold mb-4 text-center">Schedule Report</h2>
             {error && <p className="text-red-500 text-center">{error}</p>}

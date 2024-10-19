@@ -1,7 +1,7 @@
 import baseURL from '../Hooks/BaseUrl'; 
 import jsPDF from 'jspdf';
 import React, { useState } from 'react';
-import AdminNav from '../Components/AdminHeader';
+import Navbar from '../Components/AdminNav/Navbar';
 
 const UserPaymentReport: React.FC = () => {
   const [month, setMonth] = useState(''); // Hold the selected month
@@ -52,7 +52,7 @@ const UserPaymentReport: React.FC = () => {
 
   return (
     <div>
-       <AdminNav/>
+       <Navbar/>
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg mt-4">
       <h2 className="text-2xl font-bold mb-4 text-center">User Payment Report</h2>
 

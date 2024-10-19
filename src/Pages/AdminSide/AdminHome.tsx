@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AdminHeroImage from '../../assets/AdminHero.jpg'; 
 
 import Navbar from '../../Components/AdminNav/Navbar';
-import AdminNav from '../../Components/AdminHeader';
+
 
 
 const UserHome: React.FC = () => {
@@ -11,7 +11,7 @@ const UserHome: React.FC = () => {
 
   return (
     <div>
-      <AdminNav/>
+      
     <div className="flex flex-col min-h-screen bg-gray-100">
       <Navbar/>
       {/* Header Section */}
