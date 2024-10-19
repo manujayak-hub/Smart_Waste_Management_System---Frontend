@@ -6,6 +6,10 @@ const ScheduleReport: React.FC = () => {
     const [area, setArea] = useState('');
     const [schedules, setSchedules] = useState<any[]>([]);
 
+    const areas = [
+        'Colombo', 'Gampaha', 'Galle', 'Malabe'
+      ];
+
     // Fetch schedules by area
     const fetchSchedules = async () => {
         try {
@@ -68,14 +72,19 @@ const handleDownload = () => {
                 <label htmlFor="area" className="block text-sm font-medium text-gray-700">
                     Enter Area:
                 </label>
-                <input
-                    type="text"
+                <select
                     id="area"
-                    placeholder="Enter area"
                     value={area}
                     onChange={(e) => setArea(e.target.value)}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500"
-                />
+                >
+                    <option value="" disabled>Select area</option>
+                    {areas.map((m, index) => (
+                        <option key={index} value={m}>
+                        {m}
+                        </option>
+                    ))}
+                </select>
             </div>
             <div className="flex space-x-4 mb-4">
                 <button
