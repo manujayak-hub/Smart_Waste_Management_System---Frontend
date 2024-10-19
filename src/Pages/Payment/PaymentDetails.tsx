@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { UserPaymentServcie } from '../../Services/UserPayment';
 import { useParams } from 'react-router-dom';
+import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 
 interface UserPayment {
     _id: string;
@@ -30,6 +32,8 @@ const PaymentDetails: React.FC = () => {
     }, [userId]);
 
     return (
+        <div className={`flex flex-col min-h-screen bg-green-50`}>
+      <Navbar />
         <div className="p-4 bg-gray-100 min-h-screen flex flex-col items-center">
             <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-2xl">
                 <h3 className="text-2xl font-semibold text-gray-800 mb-4 text-center">Payment Details</h3>
@@ -60,6 +64,8 @@ const PaymentDetails: React.FC = () => {
                     </tbody>
                 </table>
             </div>
+        </div>
+        <Footer/>
         </div>
     );
 };

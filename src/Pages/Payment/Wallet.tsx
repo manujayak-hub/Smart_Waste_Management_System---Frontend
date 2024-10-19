@@ -4,6 +4,8 @@ import { UserService } from '../../Services/UserService';
 import { FaMoneyBillAlt, FaHistory } from 'react-icons/fa'; // Icons
 import { UserPaymentServcie } from '../../Services/UserPayment';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 
 interface Payment {
   _id: string;
@@ -131,6 +133,8 @@ const goToPaymentDetails = () => {
   }
 };
   return (
+    <div className={`flex flex-col min-h-screen bg-green-50`}>
+      <Navbar />
     <div className="p-4 bg-gray-100 min-h-screen">
       <div className="bg-white shadow-lg rounded-lg p-4 mb-6">
         {/* User Info */}
@@ -173,6 +177,8 @@ const goToPaymentDetails = () => {
           ))}
         </ul>
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 };
