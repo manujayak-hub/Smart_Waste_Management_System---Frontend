@@ -24,7 +24,7 @@ const ScheduleReport: React.FC = () => {
         try {
             const response = await baseURL.get(`/reports/schedules?area=${area}`);
             setSchedules(response.data);
-            console.log('Fetched schedules:', response.data); // Debug log
+            
         } catch (error) {
             console.error('Error fetching schedules:', error);
             setError('Failed to fetch schedules.'); // Set error message
