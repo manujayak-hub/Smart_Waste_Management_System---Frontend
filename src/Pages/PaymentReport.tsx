@@ -1,7 +1,7 @@
 import baseURL from '../Hooks/BaseUrl'; 
 import jsPDF from 'jspdf';
 import React, { useState } from 'react';
-
+import AdminNav from '../Components/AdminHeader';
 
 const UserPaymentReport: React.FC = () => {
   const [month, setMonth] = useState(''); // Hold the selected month
@@ -51,7 +51,9 @@ const UserPaymentReport: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
+    <div>
+       <AdminNav/>
+    <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg mt-4">
       <h2 className="text-2xl font-bold mb-4 text-center">User Payment Report</h2>
 
       {/* Month Selector */}
@@ -126,6 +128,7 @@ const UserPaymentReport: React.FC = () => {
       ) : (
         <p className="text-gray-500 text-center">No payments found for this month.</p>
       )}
+    </div>
     </div>
   );
 };

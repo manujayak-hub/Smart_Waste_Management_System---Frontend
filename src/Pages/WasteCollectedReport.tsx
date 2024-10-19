@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import jsPDF from 'jspdf';
 import baseURL from '../Hooks/BaseUrl'; // Import your base URL
+import AdminNav from '../Components/AdminHeader';
 
 
 // List of months
@@ -71,7 +72,9 @@ const WasteCollectionReportPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
+    <div>
+      <AdminNav/>
+    <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg mt-4">
       <h2 className="text-2xl font-bold mb-4 text-center">Waste Collected Report</h2>
 
       {/* Month Selector */}
@@ -141,6 +144,7 @@ const WasteCollectionReportPage: React.FC = () => {
       {wasteCollected.length === 0 && !loading && (
         <p className="text-gray-500 text-center">No waste collection data available for this month.</p>
       )}
+    </div>
     </div>
   );
 };
