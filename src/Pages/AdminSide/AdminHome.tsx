@@ -47,7 +47,7 @@ const UserHome: React.FC = () => {
           onClick={() => { navigate('/type') }}
             className="bg-green-500 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
-            Change Type
+            Add New Waste Type
           </button>
 
           <button
@@ -68,6 +68,12 @@ const UserHome: React.FC = () => {
             className="bg-green-500 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
             Register User 
+          </button>
+          <button
+            onClick={() => { navigate('/schedule/status/admin') }}
+            className="bg-green-500 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+          >
+            Update Waste Schedule status
           </button>
         </div>
       </main>

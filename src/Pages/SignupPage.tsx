@@ -65,7 +65,7 @@ const SignupPage: React.FC = () => {
         className="bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full sm:w-3/4 md:w-1/2 lg:max-w-md"
         onSubmit={handleSubmit}
       >
-        <h2 className="text-2xl font-bold text-center mb-6 text-green-600">Sign Up</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-green-600">User registation</h2>
 
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         {success && <p className="text-green-500 text-center mb-4">{success}</p>}
@@ -160,12 +160,10 @@ const SignupPage: React.FC = () => {
           type="submit"
           className="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
         >
-          Sign Up
+          Register
         </button>
 
-        <p className="text-center mt-4 text-gray-600">
-          Already have an account? <a href="/login" className="text-green-500 hover:underline">Log in here</a>
-        </p>
+      
       </form>
     </div>
   );

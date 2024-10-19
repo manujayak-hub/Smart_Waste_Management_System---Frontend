@@ -3,6 +3,8 @@ import { ScheduleService } from "../../Services/ScheduleService";
 import { useFetchUser } from "../../Hooks/GetUserID";
 import { TypeService, Type } from "../../Services/TypeService";
 import WasteCollecteHeader from '../../Components/waste_collecte_header'
+import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "../../Components/Footer/Footer";
 
 const ScheduleForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -31,8 +33,46 @@ const ScheduleForm: React.FC = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const validateForm = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const mobileRegex = /^\d{10}$/;
+
+    if (formData.fname.length < 3) {
+      setError("First name must be at least 3 characters.");
+      return false;
+    }
+
+    if (formData.lname.length < 3) {
+      setError("Last name must be at least 3 characters.");
+      return false;
+    }
+
+    if (!mobileRegex.test(formData.mobile)) {
+      setError("Invalid mobile number. Must be 10 digits.");
+      return false;
+    }
+
+    if (!emailRegex.test(formData.email)) {
+      setError("Invalid email address.");
+      return false;
+    }
+
+    if (!formData.cdate || new Date(formData.cdate) < new Date()) {
+      setError("Please select a valid collection date.");
+      return false;
+    }
+
+    if (formData.description.length < 10) {
+      setError("Description must be at least 10 characters.");
+      return false;
+    }
+
+    setError("");
+    return true;
+  };
+
   useEffect(() => {
-    // Fetch the waste types from backend
+    
     const fetchWasteTypes = async () => {
       try {
         const types = await TypeService.fetchAllTypes();
@@ -52,6 +92,11 @@ const ScheduleForm: React.FC = () => {
     setError("");
     setSuccess("");
 
+    if (!validateForm()) {
+      setLoading(false);
+      return;
+    }
+    
     try {
       await ScheduleService.createSchedule({
         ...formData,
@@ -82,16 +127,18 @@ const ScheduleForm: React.FC = () => {
   const today = new Date().toISOString().split('T')[0];
   return (
     <>
+    <Navbar/>
 <WasteCollecteHeader/>
-      <div className="flex justify-center items-center h-auto bg-gray-100 overflow-auto">
+      <div className=" mt-6 mb-6 flex justify-center items-center ">
         <h2 className="text-2xl font-bold text-center mb-6 text-green-600">
           Create Waste Collection Schedule
         </h2>
       </div>
 
-      <div className="flex justify-center items-center h-auto w-auto  bg-gray-100 overflow-auto">
+      <div className="flex justify-center items-center h-auto w-auto  overflow-auto">
+      
         <form
-          className="bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full sm:w-3/4 md:w-1/2 lg:max-w-md"
+          className="bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full sm:w-3/4 md:w-1/2 lg:max-w-md xl:w-1/3 mx-auto mt-8 mb-12"
           onSubmit={handleSubmit}
         >
           {error && <p className="text-red-500 text-center mb-4">{error}</p>}
@@ -240,8 +287,13 @@ const ScheduleForm: React.FC = () => {
           >
             {loading ? "Submitting..." : "Submit"}
           </button>
+          <div className="mt-6 mb-6">
+
+        </div>
         </form>
+        
       </div>
+      <Footer/>
     </>
   );
 };

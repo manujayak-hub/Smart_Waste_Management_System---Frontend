@@ -9,6 +9,7 @@ const AddNewType: React.FC = () => {
     const [types, setTypes] = useState<Type[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState(''); // Success message state
 
     // Fetch existing types
     const fetchTypes = async () => {
@@ -41,9 +42,12 @@ const AddNewType: React.FC = () => {
         try {
             const response = await TypeService.createType(wtype);
             console.log(response);  // Handle the response as needed
+            setSuccessMessage('Waste type added successfully!'); // Set success message
+            setwtype({ wastetype: '', typedescription: '' }); // Clear input fields
             fetchTypes(); // Refresh the list after adding new type
         } catch (error) {
             console.error(error);  // Handle the error
+            setError('Failed to add waste type'); // Set error message
         }
     };
 
@@ -56,6 +60,20 @@ const AddNewType: React.FC = () => {
                     className="bg-white shadow-md rounded-lg p-6 w-full max-w-lg space-y-4 mb-8"
                 >
                     <h1 className="text-2xl font-bold text-center text-green-600 mb-4">Add New Waste Type</h1>
+
+                    {successMessage && (
+                        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                            <strong className="font-bold">Success!</strong>
+                            <span className="block sm:inline">{successMessage}</span>
+                        </div>
+                    )}
+
+                    {error && (
+                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                            <strong className="font-bold">Error!</strong>
+                            <span className="block sm:inline">{error}</span>
+                        </div>
+                    )}
 
                     <div>
                         <label htmlFor="wastetype" className="block text-sm font-medium text-gray-700">
@@ -99,7 +117,7 @@ const AddNewType: React.FC = () => {
 
                 {/* Existing Types Section */}
                 <div className="w-full max-w-lg bg-white shadow-md rounded-lg p-6">
-                    <h2 className="text-xl font-bold text-center text-blue-600 mb-4">Existing Waste Types</h2>
+                    <h2 className="text-xl font-bold text-center text-green-600 mb-4">Existing Waste Types</h2>
 
                     {loading && <p className="text-center text-gray-500">Loading...</p>}
                     {error && <p className="text-center text-red-500">{error}</p>}
