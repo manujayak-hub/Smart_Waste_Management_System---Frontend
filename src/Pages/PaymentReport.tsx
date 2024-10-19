@@ -40,7 +40,7 @@ const UserPaymentReport: React.FC = () => {
 
     payments.forEach((payment) => {
       
-      doc.text(`$${payment.totalAmount}`, 50, yOffset);
+      doc.text(`${payment.totalAmount}`, 50, yOffset);
       doc.text(payment.paymentStatus, 100, yOffset);
       
       doc.text(new Date(payment.createdAt).toLocaleDateString(), 150, yOffset);
@@ -110,7 +110,7 @@ const UserPaymentReport: React.FC = () => {
               {payments.map((payment, index) => (
                 <tr key={index}>
                  
-                  <td className="px-4 py-2 border border-gray-300">${payment.totalAmount}</td>
+                  <td className="px-4 py-2 border border-gray-300">{payment.totalAmount}</td>
                   <td className="px-4 py-2 border border-gray-300">{payment.paymentStatus}</td>
                   
                   <td className="px-4 py-2 border border-gray-300">
