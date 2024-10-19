@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { useNavigate } from 'react-router-dom'; 
+import { ToastContainer, toast } from 'react-toastify'; // Import toast
+import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 
 interface WasteCollection {
   _id: string;
@@ -15,7 +17,7 @@ const AllWasteCollections: React.FC = () => {
   const [wasteCollections, setWasteCollections] = useState<WasteCollection[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   // Fetch all waste collection records
   const fetchWasteCollections = async () => {
@@ -38,6 +40,7 @@ const AllWasteCollections: React.FC = () => {
     try {
       await axios.delete(`http://localhost:8000/WasteCollection/${id}`);
       setWasteCollections(wasteCollections.filter((item) => item._id !== id));
+      toast.success('Record deleted successfully!'); // Toast notification
     } catch (err) {
       setError('Failed to delete record');
     }
@@ -45,7 +48,7 @@ const AllWasteCollections: React.FC = () => {
 
   // Handle Update Record
   const handleUpdate = (id: string) => {
-    navigate(`/update-waste-collection/${id}`); // Navigate to update page
+    navigate(`/update-waste-collection/${id}`);
   };
 
   return (
@@ -53,6 +56,8 @@ const AllWasteCollections: React.FC = () => {
       <h2 className="text-2xl font-bold text-center text-green-600 mb-6">
         All Waste Collection Records
       </h2>
+
+      <ToastContainer /> {/* Toast Container for notifications */}
 
       {loading && <p className="text-center text-gray-600">Loading...</p>}
       {error && <p className="text-center text-red-500">{error}</p>}
