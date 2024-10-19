@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
         <div className="md:w-1/2">
           <h3 className="text-2xl font-bold text-gray-900 mb-3">About Us</h3>
           <p className="text-lg text-gray-700 text-justify">
-            Smart waste is a dedicated microfinance institution based in Sri Lanka, committed to empowering low-income communities by providing accessible financial services. Our mission is to improve the financial well-being of underprivileged groups, fostering economic stability and growth. With a focus on integrity and transparency, we provide a range of financial solutions that address the unique needs of individuals and small businesses.
+          Smart Waste is a Garbage Management Aplication Designed for urben areas.
           </p>
         </div>
 
@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
       {/* Divider and Copyright Section */}
       <div className="flex flex-col items-center gap-6 w-full mb-8 text-gray-900 text-lg">
         <hr className="w-4/5 border-none rounded-full h-1 bg-gray-300" />
-        <p>© 2015 Smart Waste pvt ltd.</p>
+        <p>© 2024 Smart Waste.</p>
       </div>
     </footer>
   );

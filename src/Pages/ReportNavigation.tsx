@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import AdminNav from '../Components/AdminHeader';
+import Navbar from '../Components/AdminNav/Navbar';
 
 const ReportNavigation: React.FC = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const ReportNavigation: React.FC = () => {
 
   return (
     <div>
-      <AdminNav/>
+      <Navbar/>
     <div className="flex flex-col items-center justify-center h-screen space-y-4">
       <h1 className="text-2xl font-bold">Report Generation</h1>
       <div className="flex space-x-4">
