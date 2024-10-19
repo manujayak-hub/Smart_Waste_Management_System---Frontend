@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { UserService } from '../Services/UserService'; // Import UserService
+import Navbar from '../Components/AdminNav/Navbar';
 
 const SignupPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -60,6 +61,8 @@ const SignupPage: React.FC = () => {
   
 
   return (
+    <div>
+      <Navbar/>
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <form 
         className="bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full sm:w-3/4 md:w-1/2 lg:max-w-md"
@@ -165,6 +168,7 @@ const SignupPage: React.FC = () => {
 
       
       </form>
+    </div>
     </div>
   );
 };
