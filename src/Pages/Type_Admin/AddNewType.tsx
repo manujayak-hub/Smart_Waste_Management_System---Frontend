@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TypeService, Type } from '../../Services/TypeService';
+import Navbar from '../../Components/AdminNav/Navbar';
 
 const AddNewType: React.FC = () => {
     const [wtype, setwtype] = useState({
@@ -53,6 +54,7 @@ const AddNewType: React.FC = () => {
 
     return (
         <>
+        <Navbar/>
             <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 p-4">
                 {/* Form Section */}
                 <form 
