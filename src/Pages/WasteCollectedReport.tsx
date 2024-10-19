@@ -99,14 +99,14 @@ const WasteCollectionReportPage: React.FC = () => {
         <button
           onClick={fetchWasteCollected}
           disabled={loading}
-          className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg shadow hover:bg-blue-600 transition duration-200"
+          className="w-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white font-semibold py-2 rounded-lg shadow hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800"
         >
           {loading ? 'Loading...' : 'Search'}
         </button>
         <button
           onClick={handleDownloadPDF}
           disabled={wasteCollected.length === 0}
-          className={`w-full ${wasteCollected.length === 0 ? 'bg-gray-400' : 'bg-green-500'} text-white font-semibold py-2 rounded-lg shadow hover:${wasteCollected.length === 0 ? 'bg-gray-400' : 'bg-green-600'} transition duration-200`}
+          className={`w-full ${wasteCollected.length === 0 ? 'bg-black' : 'bg-black'} text-white font-semibold py-2 rounded-lg shadow hover:${wasteCollected.length === 0 ? 'bg-gray-400' : 'bg-green-600'} transition duration-200`}
         >
           Download PDF
         </button>

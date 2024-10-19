@@ -26,7 +26,7 @@ const UserDashboard: React.FC = () => {
             className="w-full h-48 bg-green-100 text-green-800 rounded-lg shadow-lg hover:bg-green-200 transition-transform transform hover:scale-105 flex items-center justify-center text-lg font-semibold p-4"
           >
             <FaComments className="mr-2 text-2xl" />
-            Feedback Form
+            Feedback 
           </button>
           {/* Button 2 */}
           <button

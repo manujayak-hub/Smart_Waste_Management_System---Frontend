@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import FeedbackService, { Feedback } from '../../Services/FeedbackService'; // Adjust the path as needed
 import axios from 'axios';
+import FeedbackService, { Feedback } from '../../Services/FeedbackService'; 
+import Navheader from '../../Components/Navbar/Navbar';
+import React, { useState, useEffect } from 'react';
+
 
 const FeedbackForm: React.FC = () => {
   const [emailAddress, setEmailAddress] = useState('');
@@ -100,6 +102,8 @@ const validateContactNumber = (contact: string) => {
   };
 
   return (
+    <div>
+      <Navheader/>
     <div className="max-w-3xl mx-auto p-4 border rounded shadow flex flex-col justify-center mt-5 mb-10">
     <h2 className="text-xl font-bold mb-10 text-center">Add Feedback </h2>
     {error && <p className="text-red-600">{error}</p>}
@@ -177,6 +181,7 @@ const validateContactNumber = (contact: string) => {
         </button>
       </div>
     </form>
+  </div>
   </div>
   
   );

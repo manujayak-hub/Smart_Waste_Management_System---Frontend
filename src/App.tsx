@@ -1,45 +1,45 @@
+import AddNewType from "./Pages/Type_Admin/AddNewType";
+import AdminHome from "./Pages/AdminSide/AdminHome";
+import AdminView from "./Pages/Feedback/AdminView";
+import AllFeedback from "./Pages/Feedback/AllFeedback";
+import AllWasteCollections from "./Pages/Waste_Collection_Admin/AllWasteCollections";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ScheduleForm from "./Pages/Waste_Schedule/ScheduleForm";
-import SignupPage from "./Pages/SignupPage";
-import LoginPage from "./Pages/LoginPage";
-import ViewSchedule from "./Pages/Waste_Schedule/ViewSchedule";
-import UpdateForm from "./Pages/Waste_Schedule/UpdateForm";
 
-import PaymentManagement from "./Pages/Payment/PaymentManagement";
-import Wallet from "./Pages/Payment/Wallet";
-import Success from "./Pages/Payment/Success";
 import Cancel from "./Pages/Payment/Cancel";
-import PaymentDetails from "./Pages/Payment/PaymentDetails";
 
-import Waste_Collect_User from "./Pages/Waste_Schedule/Waste_Collect_User";
-import Schedule_Satus_Admin from "./Pages/Waste_Schedule/Schedule_Satus_Admin"
+import EditFeedback from "./Pages/Feedback/EditFeedBack";
+
+import FeedbackForm from "./Pages/Feedback/FeedbackForm";
+
+import LoginPage from "./Pages/LoginPage";
+
+import MyFeedback from "./Pages/Feedback/MyFeedback";
+
+import PaymentDetails from "./Pages/Payment/PaymentDetails";
+import PaymentManagement from "./Pages/Payment/PaymentManagement";
+import PaymentReport from "./Pages/PaymentReport";
 
 import RecordCollection from "./Pages/Waste_Collection_Admin/RecordCollection";
-import AllWasteCollections from "./Pages/Waste_Collection_Admin/AllWasteCollections";
+import ReportNavigation from "./Pages/ReportNavigation";
+
+import ScheduleForm from "./Pages/Waste_Schedule/ScheduleForm";
+import ScheduleReport from "./Pages/ScheduleReport";
+import Schedule_Satus_Admin from "./Pages/Waste_Schedule/Schedule_Satus_Admin"
+import SignupPage from "./Pages/SignupPage";
+import Success from "./Pages/Payment/Success";
+
+import UpdateForm from "./Pages/Waste_Schedule/UpdateForm";
 import UpdateWasteCollection from "./Pages/Waste_Collection_Admin/UpdateWasteCollection";
 
 
+import ViewSchedule from "./Pages/Waste_Schedule/ViewSchedule";
 
-import FeedbackForm from "./Pages/Feedback/FeedbackForm";
-import MyFeedback from "./Pages/Feedback/MyFeedback";
-import EditFeedback from "./Pages/Feedback/EditFeedBack";
-import AdminView from "./Pages/Feedback/AdminView";
-import AllFeedback from "./Pages/Feedback/AllFeedback";
-
-import ReportNavigation from "./Pages/ReportNavigation";
-import PaymentReport from "./Pages/PaymentReport";
-import ScheduleReport from "./Pages/ScheduleReport";
+import Wallet from "./Pages/Payment/Wallet";
 import WasteCollectedReport from "./Pages/WasteCollectedReport";
+import Waste_Collect_User from "./Pages/Waste_Schedule/Waste_Collect_User";
 
 import UserDashboard from "./Pages/UserDashBoard";
-
-
-import AdminHome from "./Pages/AdminSide/AdminHome";
-
-
-import AddNewType from "./Pages/Type_Admin/AddNewType";
-
-
 
 function App() {
   return (
