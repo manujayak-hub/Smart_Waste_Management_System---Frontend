@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ScheduleService, Schedule } from '../../Services/ScheduleService';
 import { useFetchUser } from '../../Hooks/GetUserID';
 
+
 const Schedule_Satus_Admin: React.FC = () => {
   const [schedules, setSchedules] = useState<Schedule[]>([]);
   const [loading, setLoading] = useState(true);
@@ -55,7 +56,7 @@ const Schedule_Satus_Admin: React.FC = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen py-8 px-4">
-      <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">Pending Schedules</h2>
+      <h2 className="text-2xl font-bold text-center text-green-600 mb-6">Pending Waste Schedules</h2>
 
       {loading && <p className="text-center text-gray-600">Loading...</p>}
       {error && <p className="text-center text-red-500">{error}</p>}
@@ -80,7 +81,7 @@ const Schedule_Satus_Admin: React.FC = () => {
               <p><strong>Job Status:</strong> {schedule.jobstatus ? 'Completed' : 'Pending'}</p>
             </div>
             <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mt-4 md:mt-0 md:ml-4"
+              className="bg-green-500 text-white px-4 py-2 rounded mt-4 md:mt-0 md:ml-4"
               onClick={() => openModal(schedule)}
             >
               Mark as Completed
