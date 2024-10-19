@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import AdminNav from '../Components/AdminHeader';
 
 const ReportNavigation: React.FC = () => {
   const navigate = useNavigate();
@@ -9,6 +10,8 @@ const ReportNavigation: React.FC = () => {
   };
 
   return (
+    <div>
+      <AdminNav/>
     <div className="flex flex-col items-center justify-center h-screen space-y-4">
       <h1 className="text-2xl font-bold">Report Generation</h1>
       <div className="flex space-x-4">
@@ -31,6 +34,7 @@ const ReportNavigation: React.FC = () => {
           Payment
         </button>
       </div>
+    </div>
     </div>
   );
 };

@@ -1,11 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminHeroImage from '../../assets/AdminHero.jpg'; 
+import AdminNav from '../../Components/AdminHeader';
 
 const UserHome: React.FC = () => {
   const navigate = useNavigate();
 
   return (
+    <div>
+      <AdminNav/>
     <div className="flex flex-col min-h-screen bg-gray-100">
       {/* Header Section */}
       <header className="bg-green-600 p-4 shadow-md">
@@ -76,6 +79,7 @@ const UserHome: React.FC = () => {
       <footer className="bg-gray-200 p-4 mt-4">
         <p className="text-center text-gray-700 text-sm md:text-base">© 2024 Smart Waste. All rights reserved.</p>
       </footer>
+    </div>
     </div>
   );
 };

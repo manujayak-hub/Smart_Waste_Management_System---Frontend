@@ -1,76 +1,90 @@
 import React, { useState } from 'react';
 import jsPDF from 'jspdf';
 import baseURL from '../Hooks/BaseUrl'; // Import your base URL
+import AdminNav from '../Components/AdminHeader';
 
 const ScheduleReport: React.FC = () => {
     const [area, setArea] = useState('');
     const [schedules, setSchedules] = useState<any[]>([]);
+    const [error, setError] = useState('');
 
     const areas = [
         'Colombo', 'Gampaha', 'Galle', 'Malabe'
-      ];
+    ];
 
     // Fetch schedules by area
     const fetchSchedules = async () => {
+        if (!area) {
+            setError('Please select an area');
+            return;
+        }
+        
+        setError(''); // Clear previous errors
+        console.log('Selected Area:', area); // Debug log
         try {
             const response = await baseURL.get(`/reports/schedules?area=${area}`);
             setSchedules(response.data);
+            console.log('Fetched schedules:', response.data); // Debug log
         } catch (error) {
             console.error('Error fetching schedules:', error);
+            setError('Failed to fetch schedules.'); // Set error message
         }
     };
 
-  // Handle PDF download
-const handleDownload = () => {
-    const doc = new jsPDF();
-    doc.setFontSize(20);
-    doc.text('Schedule Report', 10, 10);
-    doc.setFontSize(12);
-    doc.setTextColor(100);
+    // Handle PDF download
+    const handleDownload = () => {
+        const doc = new jsPDF();
+        doc.setFontSize(20);
+        doc.text('Schedule Report', 10, 10);
+        doc.setFontSize(12);
+        doc.setTextColor(100);
 
-    // Starting y position
-    let yOffset = 30;
+        // Starting y position
+        let yOffset = 30;
 
-    schedules.forEach((schedule, index) => {
-        // Draw a line separator
-        doc.line(10, yOffset - 10, 200, yOffset - 10);
-        
-        // Schedule details
-        doc.text(`Schedule ${index + 1}`, 10, yOffset);
-        doc.setFontSize(11);
-        doc.setTextColor(50);
-        
-        const lines = [
-            `Name: ${schedule.fname} ${schedule.lname}`,
-            `Contact No: ${schedule.mobile}`,
-            `Email: ${schedule.email}`,
-            `Area: ${schedule.area}`,
-            `Timeslot: ${schedule.timeslot}`,
-            `Type: ${schedule.type}`,
-            `Description: ${schedule.description}`
-        ];
+        schedules.forEach((schedule, index) => {
+            // Draw a line separator
+            doc.line(10, yOffset - 10, 200, yOffset - 10);
+            
+            // Schedule details
+            doc.text(`Schedule ${index + 1}`, 10, yOffset);
+            doc.setFontSize(11);
+            doc.setTextColor(50);
+            
+            const lines = [
+                `Name: ${schedule.fname} ${schedule.lname}`,
+                `Contact No: ${schedule.mobile}`,
+                `Email: ${schedule.email}`,
+                `Area: ${schedule.area}`,
+                `Timeslot: ${schedule.timeslot}`,
+                `Type: ${schedule.type}`,
+                `Description: ${schedule.description}`
+            ];
 
-        lines.forEach((line) => {
-            const splitText = doc.splitTextToSize(line, 190); // Split text to fit within the PDF width
-            splitText.forEach((txtLine: string) => { // Explicitly define the type as string
-                doc.text(txtLine, 10, yOffset += 10); // Adjust vertical spacing here
+            lines.forEach((line) => {
+                const splitText = doc.splitTextToSize(line, 190); // Split text to fit within the PDF width
+                splitText.forEach((txtLine: string) => {
+                    doc.text(txtLine, 10, yOffset += 10); // Adjust vertical spacing here
+                });
+                yOffset += 5; // Add some extra space after each schedule
             });
-            yOffset += 5; // Add some extra space after each schedule
+
+            // Move yOffset for the next schedule
+            yOffset += 20; // Add space before the next schedule
         });
 
-        // Move yOffset for the next schedule
-        yOffset += 20; // Add space before the next schedule
-    });
-
-    doc.save('schedules_report.pdf');
-};
+        doc.save('schedules_report.pdf');
+    };
 
     return (
-        <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
+        <div>
+             <AdminNav/>
+        <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-4">
             <h2 className="text-2xl font-bold mb-4 text-center">Schedule Report</h2>
+            {error && <p className="text-red-500 text-center">{error}</p>}
             <div className="mb-4">
                 <label htmlFor="area" className="block text-sm font-medium text-gray-700">
-                    Enter Area:
+                    Select Area:
                 </label>
                 <select
                     id="area"
@@ -81,7 +95,7 @@ const handleDownload = () => {
                     <option value="" disabled>Select area</option>
                     {areas.map((m, index) => (
                         <option key={index} value={m}>
-                        {m}
+                            {m}
                         </option>
                     ))}
                 </select>
@@ -89,14 +103,14 @@ const handleDownload = () => {
             <div className="flex space-x-4 mb-4">
                 <button
                     onClick={fetchSchedules}
-                   className="w-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white font-semibold py-2 rounded-lg shadow hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800"
+                    className="w-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white font-semibold py-2 rounded-lg shadow hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800"
                 >
                     Search
                 </button>
                 <button
                     onClick={handleDownload}
                     disabled={schedules.length === 0}
-                    className={`w-full ${schedules.length === 0 ? 'bg-black' : 'bg-black'} text-white font-semibold py-2 rounded-lg shadow hover:${schedules.length === 0 ? 'bg-gray-400' : 'bg-green-600'} transition duration-200`}
+                    className={`w-full bg-black text-white font-semibold py-2 rounded-lg shadow ${schedules.length === 0 ? 'bg-gray-400' : 'bg-black hover:bg-green-600'} transition duration-200`}
                 >
                     Download PDF
                 </button>
@@ -110,15 +124,16 @@ const handleDownload = () => {
                             <p className="text-gray-700"><strong>Contact No:</strong> {schedule.mobile}</p>
                             <p className="text-gray-700"><strong>Email:</strong> {schedule.email}</p>
                             <p className="text-gray-700"><strong>Area:</strong> {schedule.area}</p>
-                            <p className="text-gray-700"><strong>TimeSlot:</strong> {schedule.timeslot}</p>
+                            <p className="text-gray-700"><strong>Timeslot:</strong> {schedule.timeslot}</p>
                             <p className="text-gray-700"><strong>Type:</strong> {schedule.type}</p>
                             <p className="text-gray-700"><strong>Description:</strong> {schedule.description}</p>
                         </div>
                     ))
                 ) : (
-                    <p className="text-gray-500 text-center">No schedules found for this area.</p>
+                    <p className="text-gray-500">No schedules found.</p>
                 )}
             </div>
+        </div>
         </div>
     );
 };
